@@ -45,7 +45,7 @@
     <h1>数字组合查找器</h1>
     <label for="sumValue">和值:</label>
     <input type="number" id="sumValue" placeholder="请输入和值">
-    <div class='hezhibeizhu'>//和值范围21 ~ 183,三个区间都至少有一个号</div>
+    <div class='hezhibeizhu'>//和值范围21 ~ 183</div>
     <br><br>
     <label for="luckyNumbers">胆码 (用空格分隔):</label>
     <input type="text" id="luckyNumbers" placeholder="请输入 1 - 5 个胆码">
@@ -96,7 +96,7 @@
             // 验证胆码范围及顺序
             for (let i = 0; i < luckyNumbers.length; i++) {
                 if (luckyNumbers[i] < 1 || luckyNumbers[i] > 33) {
-                    document.getElementById('result').textContent = '胆码必须在 1 - 33 范围内，注意观察你输入的胆码是否有问题 如最后一个胆码多输入一个空格，如胆码和胆码之间只能有一个空格存在。';
+                    document.getElementById('result').textContent = '胆码必须在 1 - 33 范围内，注意观察你输入的胆码是否有问题 如第一个胆码前边多输入一个空格，如最后一个胆码后边多输入一个空格，如胆码和胆码之间只能有一个空格存在。';
                     document.getElementById('combinationList').innerHTML = '';
                     return;
                 }
@@ -184,4 +184,4 @@
     </script>
 </body>
 
-</html>     
+</html>        
