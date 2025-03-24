@@ -56,6 +56,8 @@
     <ul id="combinationList"></ul>
 
     <script>
+    	
+    	//猜 ssq和值 加 胆码, 不允许当期断区存在
         document.addEventListener('DOMContentLoaded', function () {
             const findButton = document.getElementById('findButton');
             findButton.addEventListener('click', findCombinations);
@@ -92,7 +94,7 @@
             // 验证胆码范围及顺序
             for (let i = 0; i < luckyNumbers.length; i++) {
                 if (luckyNumbers[i] < 1 || luckyNumbers[i] > 33) {
-                    document.getElementById('result').textContent = '胆码必须在 1 - 33 范围内，注意观察你输入的胆码是否有问题 如最后一个胆码多输入一个空格，如胆码和胆码之间只能有一个空格存在。';
+                    document.getElementById('result').textContent = '胆码必须在 1 - 33 范围内，注意观察你输入的胆码是否有问题 如第一个胆码前边多输入一个空格，如最后一个胆码后边多输入一个空格，如胆码和胆码之间只能有一个空格存在。';
                     document.getElementById('combinationList').innerHTML = '';
                     return;
                 }
@@ -186,4 +188,4 @@
     </script>
 </body>
 
-</html>    
+</html>        
