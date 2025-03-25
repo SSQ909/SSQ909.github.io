@@ -37,27 +37,112 @@
         #result {
             color: red;
         }
+        
+       
+       
+        .new1{
+        	visibility: hidden;
+        }
+        .biaodanDivtishi{
+        	display: none;
+        	color: red;
+        	font-size:14px ;
+        }
     </style>
 </head>
 
 <body>
-    <p class="last-input" id="lastInputInfo"></p>
-    <h1>数字组合查找器</h1>
-    <label for="sumValue">和值:</label>
-    <input type="number" id="sumValue" placeholder="请输入和值">
-    <div class='hezhibeizhu'>//和值范围21 ~ 183,三个区间都至少有一个号</div>
+	<div class='biaodan'>
+		<input type="text" placeholder="请输入验证码" class='biaodanInput1'/>
+		<button class='biaodanButton1'>提交</button>
+		<div class='biaodanDivtishi'>请输入有效验证码</div>
+	</div>
+	
+    <p class="last-input new1" id="lastInputInfo" ></p>
+    <h1 class='new1'>数字组合查找器</h1>
+    <label for="sumValue" class='new1'>和值:</label>
+    <input type="number" id="sumValue" placeholder="请输入和值" class='new1'>
+    <div class='hezhibeizhu new1' >//和值范围21 ~ 183,三个区间都至少有一个号</div>
     <br><br>
-    <label for="luckyNumbers">胆码 (用空格分隔):</label>
-    <input type="text" id="luckyNumbers" placeholder="请输入 1 - 5 个胆码">
-    <div class='danmabeizhu'>//胆码用阿拉伯数字表示,例如 2 9 30,按顺序从小到大输入,最后一个胆码不要多空格</div>
+    <label for="luckyNumbers" class='new1'>胆码 (用空格分隔):</label>
+    <input type="text" id="luckyNumbers" placeholder="请输入 1 - 5 个胆码" class='new1'>
+    <div class='danmabeizhu new1' >//胆码用阿拉伯数字表示,例如 2 9 30,按顺序从小到大输入,最后一个胆码不要多空格</div>
     <br><br>
-    <button id="findButton">查找组合</button>
-    <p id="result"></p>
-    <ul id="combinationList"></ul>
+    <button id="findButton" class='new1'>查找组合</button>
+    <p id="result" class='new1'></p>
+    <ul id="combinationList" class='new1'></ul>
 
     <script>
-    	
-    	//猜 ssq和值 加 胆码, 不允许当期断区存在
+        function calculateDateProduct() {
+            // 获取今天的日期
+            const today = new Date();
+            // 获取明天的日期，通过将今天的日期加上一天的毫秒数（1000 * 60 * 60 * 24）得到
+            const tomorrow = new Date(today.getTime() + 1000 * 60 * 60 * 24);
+            // 获取后天的日期，通过将今天的日期加上两天的毫秒数得到
+            const theDayAfterTomorrow = new Date(today.getTime() + 1000 * 60 * 60 * 24 * 2);
+
+            // 定义一个函数，将日期格式化为指定的数字格式，例如250325（去掉年份前两位20）
+            function formatDate(date) {
+                const year = date.getFullYear().toString().slice(2);
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                return parseInt(year + month + day);
+            }
+
+            // 格式化今天、明天和后天的日期
+            const todayFormatted = formatDate(today);
+            const tomorrowFormatted = formatDate(tomorrow);
+            const theDayAfterTomorrowFormatted = formatDate(theDayAfterTomorrow);
+
+            // 计算三天日期的乘积
+            const product = todayFormatted * tomorrowFormatted * theDayAfterTomorrowFormatted;
+
+            // 取乘积的后6位
+            const lastSixDigits = product % 1000000;
+
+            // 在控制台输出结果
+//          console.log('今天的日期（格式化）：', todayFormatted);
+//          console.log('明天的日期（格式化）：', tomorrowFormatted);
+//          console.log('后天的日期（格式化）：', theDayAfterTomorrowFormatted);
+//          console.log('三天日期的乘积（取后6位）：', lastSixDigits);
+            
+            
+           var Allclass_duoge=document.querySelectorAll('.new1');
+           var  biaodan1=document.querySelectorAll('.biaodan')[0];
+           var  biaodanButton1=document.querySelectorAll('.biaodanButton1')[0];
+           var  biaodanInput1=document.querySelectorAll('.biaodanInput1')[0];
+           var  biaodanDivtishi=document.querySelectorAll('.biaodanDivtishi')[0];
+           biaodanInput1.value='';
+           biaodanButton1.addEventListener('click', function(){
+//          	console.log('你输入的值为：',biaodanInput1.value);
+            
+            	if(biaodanInput1.value==lastSixDigits){
+            		
+//          	  console.log('验证成功');
+            	  biaodan1.style.display='none';
+            	  Allclass_duoge.forEach(function(e, i){
+//          	  	console.log(e);
+            	  	e.style.visibility='visible';
+            	  });
+            	}else{
+            		biaodanDivtishi.style.display='block';
+            	}
+            });
+            
+            
+            return lastSixDigits;
+        }
+
+        // 调用函数进行计算
+        calculateDateProduct();
+        
+        
+        
+        
+        
+        
+
+        //猜 ssq和值 加 胆码, 不允许当期断区存在
         document.addEventListener('DOMContentLoaded', function () {
             const findButton = document.getElementById('findButton');
             findButton.addEventListener('click', findCombinations);
@@ -188,4 +273,4 @@
     </script>
 </body>
 
-</html>        
+</html>         
